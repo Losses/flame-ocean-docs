@@ -87,11 +87,55 @@ def render_standard(raw_data):
 - 行数: 16
 - 数据: 连续的 16 位 little-endian 值
 - 像素数据起始: r6 + 6
+- 首字节: ≥ 0x80 (metadata[0] Bit 7 = 1)
 
 ### 与标准编码的差异
 
-1. 输出 14 列（而非 15 列）
-2. 可能涉及字节交换（revsh 指令）
+| 特性 | 标准编码 (15列) | 特殊编码 (14列) |
+|------|-----------------|-----------------|
+| metadata[0] Bit 7 | 0 | 1 |
+| 列数 | 15 | 14 |
+| 分支目标 | 0x2DB2E (顺序执行) | 0x2DB4E (跳转) |
+| adds r7,r7,#2 | ✅ 执行 | ❌ 不执行 |
+| 字节交换 | ❌ 否 | ✅ 是 (revsh) |
+
+**像素提取规则**:
+- 数据存储为 16 位 little-endian 值
+- 只有**前 14 位**用于像素显示
+- **最高 2 位** (Bit 15-14) 可能是其他信息或填充
+
+### Python 渲染函数 (来自原分析)
+
+```python
+def render_special(raw_data):
+    """特殊编码渲染 (首字节 ≥ 0x80) - Skip+Swap 14列"""
+    rows = []
+    for row in range(16):
+        # 跳过第 1 个字节
+        idx = row * 2 + 1
+        if idx + 1 >= 32:
+            break
+
+        odd = raw_data[idx]      # 原始第 2 个字节
+        even = raw_data[idx + 1]  # 原始第 3 个字节
+
+        # MSB first: bit 7 → 位置 0, bit 0 → 位置 7
+        even_bits = ''.join('#' if (even >> i) & 1 else '.' for i in range(7, -1, -1))
+        odd_bits = ''.join('#' if (odd >> i) & 1 else '.' for i in range(7, -1, -1))
+
+        # 交换顺序: odd 先，even 后，取 14 列
+        rows.append((odd_bits + even_bits)[:14])
+
+    return rows
+```
+
+### 未解问题
+
+| 问题 | 状态 |
+|------|------|
+| 最高 2 位 (Bit 15-14) 的含义 | ❓ 未知 |
+| 字节交换 (revsh) 的具体影响 | ⚠️ 部分理解 |
+| 14 列的精确位映射 | ⚠️ 需要验证 |
 
 ---
 
