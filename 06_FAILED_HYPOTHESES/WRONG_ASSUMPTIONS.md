@@ -33,20 +33,12 @@ char_data = data[offset + 2:offset + CHAR_SIZE]
 
 每 4 字节 = [值1] [值2] [0x96] [值3]
 
-### 错误实现
+### 错误实现 (来自原分析)
 
 ```python
-def extract_bitmap_wrong(data, addr):
-    bitmap_data = []
-    i = 0
-    while i < 64:
-        if b == 0x96:
-            i += 1  # ← 错误: 0x96 不是标记!
-        else:
-            val = data[addr + i] | (data[addr + i + 1] << 8)
-            bitmap_data.append(val)
-            i += 2
-    return bitmap_data
+# ❌ 错误：跳过 0x96
+if data[addr + i] == 0x96:
+    i += 1  # 跳过标记 ← 错误！
 ```
 
 ### 证据

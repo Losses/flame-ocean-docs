@@ -26,10 +26,6 @@
 | `r2pipe` | radare2/rizin Python 管道 |
 | `rzpipe` | rizin Python 管道 |
 
-**安装命令**:
-```bash
-pip install capstone pyhidra ghidra-bridge r2pipe rzpipe
-```
 
 ### Ghidra 项目
 

@@ -94,20 +94,17 @@ Value 2: 0x8840 (little-endian) = bits for row 1
 
 ---
 
-## 正确的提取算法
+## 正确的提取算法 (来自原分析)
 
+**正确的提取逻辑**:
 ```python
-def extract_bitmap_correct(firmware, r5):
-    """正确的提取方法：从 r6+6 读取，无标记跳过"""
-    r6 = 0x100000 + r5 * 4
-    pixel_start = r6 + 6  # 跳过 6 字节元数据
+# ✅ 正确：从 r6+6 读取
+r6 = 0x100000 + r5 * 4
+pixel_start = r6 + 6  # 跳过 6 字节元数据
 
-    bitmap_data = []
-    for i in range(0, 32, 2):  # 16 行 × 2 字节
-        val = struct.unpack('<H', firmware[pixel_start + i:pixel_start + i + 2])[0]
-        bitmap_data.append(val)
-
-    return bitmap_data
+for i in range(0, 32, 2):  # 16 行 × 2 字节
+    val = struct.unpack('<H', firmware[pixel_start + i:pixel_start + i + 2])[0]
+    bitmap_data.append(val)
 ```
 
 ---

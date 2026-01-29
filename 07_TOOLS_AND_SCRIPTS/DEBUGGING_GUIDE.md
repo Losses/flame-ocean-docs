@@ -103,24 +103,17 @@ def get_encoding_type(firmware, r5):
 
 ### Q: 如何找到字符的 r5 值？
 
-```python
-def unicode_to_r5(unicode):
-    u_hi = unicode >> 8
-    u_lo = unicode & 0xFF
+参考 [Unicode查找表](../04_DATA_DISCOVERY/UNICODE_LOOKUP_TABLE.md)。
 
-    r5_hi = u_hi - 0x5D
-    offset_val = offset(u_lo)
-    r5_lo = u_lo + offset_val
+已知映射关系:
+- U+6CA8 (沨) → r5 = 0x0FDE
+- U+6CA4 (沤) → r5 = 0x0FDB
+- U+6CA6 (沦) → r5 = 0x0FDC
+- U+6CAA (沪) → r5 = 0x0FDA
 
-    return (r5_hi << 8) | r5_lo
+映射公式: `r5 = Unicode - 0x5CCA + sub_offset`
 
-def offset(u_lo):
-    idx = u_lo - 0xA0
-    adj_table = [0x0C, 0x0C, 0x0A, 0x00]
-    adj_idx = (idx - 4) // 2
-    adj = adj_table[adj_idx]
-    return 0x32 + (((10 - idx) ^ adj) >> 1)
-```
+**注意**: offset() 函数的具体实现尚未完全确定，原分析中测试了多个公式但均未达到 100% 匹配。
 
 ### Q: 如何渲染字符？
 
