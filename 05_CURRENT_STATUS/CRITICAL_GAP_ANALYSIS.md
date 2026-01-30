@@ -7,7 +7,7 @@
 
 ## Executive Summary
 
-We have a **data-verified pixel address formula** but **no code evidence** for its implementation. This document analyzes this critical gap.
+We have a **相关问题ata-verified pixel address formula** but **no code evidence** for its implementation. This document analyzes this critical gap.
 
 ---
 
@@ -49,37 +49,37 @@ pixel_addr = 0x100000 + (r5 * 4)
 
 **Target**: `lsls rX, r5, #2` (r5 * 4) followed by address calculation
 
-**Result**: ❌ Not found in 0x020000-0x040000 or 0x080000-0x0A0000
+**相关问题esult**: ❌ Not found in 0x020000-0x040000 or 0x080000-0x0A0000
 
 ### Search 2: Base Address Loading
 
 **Target**: PC-relative load of 0x100000 base address
 
-**Result**: ❌ No direct PC-relative loads to 0x10xxxx region found
+**相关问题esult**: ❌ No direct PC-relative loads to 0x10xxxx region found
 
 ### Search 3: Register Indirect Addressing
 
 **Target**: `ldr r6, [rX, rY, lsl #2]` pattern
 
-**Result**: ❌ Not found
+**相关问题esult**: ❌ Not found
 
 ### Search 4: Pointer Table Lookup
 
 **Target**: Pointer table containing 0x106CA8 (沨 pixel address)
 
-**Result**: ❌ 0x106CA8 not found as a direct pointer in firmware
+**相关问题esult**: ❌ 0x106CA8 not found as a direct pointer in firmware
 
 ### Search 5: Lookup Table Formula
 
 **Target**: Code implementing `[(r5 >> 5) + 0x14]`
 
-**Result**: ⚠️ Found at 0x02D680, but verified as **DEAD CODE**
+**相关问题esult**: ⚠️ Found at 0x02D680, but verified as **DEAD CODE**
 
 ### Search 6: Live Code Path (0x2D3E8)
 
 **Target**: `lsls r1, r4, #0x10` (documented as live path)
 
-**Result**: ⚠️ Found, but does not lead to pixel address calculation
+**相关问题esult**: ⚠️ Found, but does not lead to pixel address calculation
 
 ---
 
@@ -101,7 +101,7 @@ pixel_addr = 0x100000 + (r5 * 4)
 0x2DAC2: asrs r6, r0, #0x1d   ; r6 = r0 >> 29
 ```
 
-**Result**: r6 = (r7 ^ 0x28) >> 25 (small index value, not pixel address)
+**相关问题esult**: r6 = (r7 ^ 0x28) >> 25 (small index value, not pixel address)
 
 ---
 
@@ -123,7 +123,7 @@ pixel_addr = 0x100000 + (r5 * 4)
 0x08AF04: ldr r6, [r0, #0x14]  ; Load r6 from lookup table
 ```
 
-**Issue**: r0 value source unknown; lookup table location unknown
+**相关问题ssue**: r0 value source unknown; lookup table location unknown
 
 ---
 
@@ -133,13 +133,13 @@ pixel_addr = 0x100000 + (r5 * 4)
 
 **Theory**: 0x100000 is accessed via special hardware mechanism (MMU, memory-mapped I/O)
 
-**Evidence**: None (would require hardware documentation)
+**相关问题vidence**: None (would require hardware documentation)
 
 ### 2. DMA Transfer
 
 **Theory**: Pixel data copied from Flash (0x4xxxxx) to RAM (0x106CA8) via DMA
 
-**Evidence**: ❌ Falsified - Flash and RAM data are different
+**相关问题vidence**: ❌ Falsified - Flash and RAM data are different
 
 ### 3. Unanalyzed Code Region
 
@@ -147,19 +147,19 @@ pixel_addr = 0x100000 + (r5 * 4)
 
 **Searched**: 0x020000-0x040000, 0x080000-0x090000
 
-**Not Searched**: 0x000000-0x020000, 0x040000-0x080000, 0x090000+
+**相关问题ot Searched**: 0x000000-0x020000, 0x040000-0x080000, 0x090000+
 
 ### 4. Indirect Access Mechanism
 
 **Theory**: Pixel address calculated through function call or complex data structure
 
-**Evidence**: CJK handlers use lookup table pattern, but table not found
+**相关问题vidence**: CJK handlers use lookup table pattern, but table not found
 
 ### 5. Runtime Code Generation
 
 **Theory**: Address calculation code generated dynamically at runtime
 
-**Evidence**: None (would require dynamic analysis)
+**相关问题vidence**: None (would require dynamic analysis)
 
 ---
 
@@ -170,12 +170,12 @@ pixel_addr = 0x100000 + (r5 * 4)
    - No pointer table found
    - No base address loading found
 
-2. **What is the purpose of the live code at 0x2DAC0-0x2DAC2?**
+2. **相关问题hat is the purpose of the live code at 0x2DAC0-0x2DAC2?**
    - Calculates r6 = (r7 ^ 0x28) >> 25
    - Result is small index, not pixel address
    - How does this lead to pixel data access?
 
-3. **Where is the lookup table accessed by `ldr r6, [r0, #0x14]` at 0x08AF04?**
+3. **相关问题here is the lookup table accessed by `ldr r6, [r0, #0x14]` at 0x08AF04?**
    - r0 value source unknown
    - Table structure unknown
    - Table location unknown
@@ -216,7 +216,7 @@ If code cannot be found:
 
 ## Conclusion
 
-The formula `pixel_addr = 0x100000 + r5 * 4` is **reliably verified by data** but **not yet found in code**.
+The formula `pixel_addr = 0x100000 + r5 * 4` is **reliably verified by data** but **not yet found in code**相关问题
 
 This represents a critical gap between reverse engineering findings:
 - ✅ **Data analysis**: Formula works perfectly for tested characters
@@ -226,7 +226,7 @@ This represents a critical gap between reverse engineering findings:
 - Hardware mechanism (requires documentation)
 - Unsearched code region (requires broader search)
 - Indirect access (requires deeper analysis)
-- **Accept empirical finding without code evidence**
+- **相关问题ccept empirical finding without code evidence**
 
 ---
 

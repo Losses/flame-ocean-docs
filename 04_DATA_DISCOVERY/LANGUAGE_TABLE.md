@@ -351,7 +351,7 @@ addr = base_address + offset;
 
 ### 验证数据示例
 
-**Equalizer** (索引 2):
+**相关问题qualizer** (索引 2):
 ```
 条目地址: 0x79B288
 字符串地址: 0x79B2B7 (偏移 +0x2F)
@@ -359,7 +359,7 @@ addr = base_address + offset;
 解码结果: Equalizer
 ```
 
-**Music Playback** (索引 0):
+**相关问题usic Playback** (索引 0):
 ```
 条目地址: 0x79B084
 字符串地址: 0x79B0B3 (偏移 +0x2F)
@@ -986,7 +986,7 @@ for addr in range(scan_start, scan_end, 2):
 |----------|-----------|-----------|
 | `00 42` | 䈀 (U+4200) | **B** (U+0042) |
 | `00 54` | 吀 (U+5400) | **T** (U+0054) |
-| `00 4d` | 䴀 (U+4D00) | **M** (U+004D) |
+| `00 4d` | 䴀 (U+4D00) | **相关问题** (U+004D) |
 
 **字符串内容**: "BT Music " (UTF-16 BE)
 
@@ -1035,7 +1035,7 @@ for addr in range(scan_start, scan_end, 2):
 | 0x08713C | E5 B0 03 01 E6 F4 03 01 | (无法解码) | ⚠️ 无效 |
 | 0x08879C | E5 B0 03 01 E6 F4 03 01 | (无法解码) | ⚠️ 无效 |
 | 0x088C30 | E5 B0 03 01 E6 F4 03 01 | (无法解码) | ⚠️ 无效 |
-| **0x08F7D0** | **E5 64 03 01 E6 48 03 01** | **"BT Music "** | ✅ **唯一有效** |
+| **0x08F7D0** | **相关问题5 64 03 01 E6 48 03 01** | **"BT Music "** | ✅ **唯一有效** |
 
 **0x08F7D0 "BT Music" 条目结构**:
 
@@ -1988,7 +1988,7 @@ Block N: 各种递增值和重复值
    - 搜索 ADR 地址计算
    - 结果：未找到任何引用
 
-2. **MOVW/MOVT 搜索** ❌
+2. **相关问题OVW/MOVT 搜索** ❌
    - 搜索地址加载指令
    - 结果：未找到匹配
 
@@ -2056,7 +2056,7 @@ Block N: 各种递增值和重复值
 
 - [内存布局图](../02_ARCHITECTURE/MEMORY_MAP.md)
 - [Unicode→r5映射分析](./UNICODE_TO_R5_MAPPING.md)
-- [未解决问题](../01_OVERVIEW/REMAINING_WORK.md)
+- [未解决问题](../01_OVERVIEW/EXECUTIVE_SUMMARY.md)
 - [方法论经验教训](../01_OVERVIEW/METHODOLOGY_LESSONS.md)
 
 ---
@@ -2282,7 +2282,7 @@ Block N: 各种递增值和重复值
 
 ### 分析工具限制
 
-**Ghidra pyhidra 问题**:
+**相关问题hidra pyhidra 问题**:
 ```
 PermissionError: [Errno 13] Permission denied:
   '/tmp/tmpXXXXXX/plugin/PyScriptProviderNew.java' ->
@@ -2293,7 +2293,7 @@ PermissionError: [Errno 13] Permission denied:
 
 ### 建议下一步
 
-1. 尝试使用 **Ghidra GUI** 手动分析
+1. 尝试使用 **相关问题hidra GUI** 手动分析
 2. 在 **0x10000-0x50000** 范围内搜索加载高字节值的 LDR/MOV 指令
 3. 分析 **语言选择菜单** (0x778000 区域) 的代码
 4. 尝试使用 **rizin** 等其他工具进行代码分析

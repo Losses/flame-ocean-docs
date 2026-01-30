@@ -176,4 +176,4 @@ uint16_t r5 = (encoded_value ^ 0x28) >> 16;
 - [R5 字符索引](./R5_CHARACTER_INDEX.md)
 - [R6 像素数据指针](./R6_PIXEL_DATA_POINTER.md)
 - [R1 渲染上下文指针](./R1_RENDER_CONTEXT_POINTER.md)
-- [未解决问题](../../01_OVERVIEW/REMAINING_WORK.md)
+- [未解决问题](../01_OVERVIEW/EXECUTIVE_SUMMARY.md)

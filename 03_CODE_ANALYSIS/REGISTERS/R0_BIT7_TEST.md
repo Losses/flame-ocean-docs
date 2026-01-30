@@ -118,7 +118,7 @@ r0 >= 0x80 ? 特殊编码 : 标准编码
 
 ## 未解问题
 
-r0 寄存器的详细问题已汇总到 **[REMAINING_WORK.md](../../01_OVERVIEW/REMAINING_WORK.md)** 阶段 4.3。
+r0 寄存器的详细问题已汇总到 **[执行摘要](../01_OVERVIEW/EXECUTIVE_SUMMARY.md)** 阶段 4.3。
 
 **关键问题**:
 - ldrsb 加载的值为何被立即覆盖？

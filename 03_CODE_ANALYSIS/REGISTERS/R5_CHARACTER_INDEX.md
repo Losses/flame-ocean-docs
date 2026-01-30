@@ -29,7 +29,7 @@
 
 ### 🆕 新发现：r5 加载点 (2026-01-29)
 
-通过 **Ghidra 数据流分析** 发现了 r5 的实际加载点：
+通过 **相关问题hidra 数据流分析** 发现了 r5 的实际加载点：
 
 ```assembly
 ; 在 func_pixel_load_0x2DB58 函数中
@@ -63,8 +63,8 @@
    - **SDK特定值** - Rockchip SDK 可能使用特殊的地址编码方式
 
 **固件识别**:
-- 芯片厂商: **Rockchip (瑞芯微)**
-- SDK版本: **RKnano SDK 1.0**
+- 芯片厂商: **相关问题ockchip (瑞芯微)**
+- SDK版本: **相关问题Knano SDK 1.0**
 - 文件头部: "Rockchip" + "RKnano SDK 1.0"
 
 **相关文档**: [Ghidra 数据流分析](../../04_DATA_DISCOVERY/LANGUAGE_TABLE.md#搜索方法-18-ghidra-数据分析结果-2026-01-29)
@@ -829,25 +829,11 @@ struct constant_pool_entry {
 | 假设 U+6CA8 → r5=0x0FDE | 追踪实际数据流 |
 | 标记"已解决"当证据不足 | 诚实区分观察/假设/证明 |
 
-### 下一步建议
-
-| 优先级 | 任务 | 工具 | 状态 |
-|--------|------|------|------|
-| 🔴 高 | 扩大搜索范围到 0x500000+ | Python + Capstone | ✅ 已完成 |
-| 🔴 高 | 分析候选字符处理函数 | Ghidra 数据流分析 | ✅ 已完成 |
-| 🟡 中 | 使用 angr 符号执行 | angr | ⚠️ 尝试但超时，手动分析成功 |
-| 🟢 低 | 建立更完整的字符映射表 | 暴力搜索更多字符 | ✅ 已验证 66 字符 |
-
-**更新 (2026-01-29)**: angr 符号执行因超时未能完成，但通过手动 Capstone 分析成功找到关键代码：
-- ✅ `0x02D4E6: asrs r5, r7, #2` (Unicode → r5 转换)
-- ✅ 公式验证: `r5 = Unicode >> 2`
-- ✅ 双路径数据流结构确认
-
 ---
 
 ## 未解问题
 
-r5 寄存器的详细问题已汇总到 **[REMAINING_WORK.md](../../01_OVERVIEW/REMAINING_WORK.md)** 阶段 1。
+r5 寄存器的详细问题已汇总到 **[执行摘要](../01_OVERVIEW/EXECUTIVE_SUMMARY.md)** 阶段 1。
 
 **关键问题**:
 - Unicode → r5 映射函数的完整实现

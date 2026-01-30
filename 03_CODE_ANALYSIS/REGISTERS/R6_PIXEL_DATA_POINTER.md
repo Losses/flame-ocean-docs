@@ -477,7 +477,7 @@ r6_final = [0x14 + 0x1F] = [0x33]
 
 ### Angr 局限性
 
-1. **IR 解码错误**：某些 Thumb 指令无法被 VEX 引擎解码
+1. **相关问题R 解码错误**：某些 Thumb 指令无法被 VEX 引擎解码
 2. **无 Unicorn 引擎**：系统未安装 Unicorn，无法使用具体执行引擎
 3. **Blob 模式限制**：blob 加载器缺少完整的代码/数据区分信息
 
@@ -881,7 +881,7 @@ Value 2: 0x8840 (little-endian)
 - [指令级追踪](../INSTRUCTION_TRACE.md)
 - [R5 字符内部索引](./R5_CHARACTER_INDEX.md)
 - [R7 渲染上下文](./R7_RENDER_CONTEXT.md)
-- [未解决问题](../../01_OVERVIEW/REMAINING_WORK.md)
+- [未解决问题](../01_OVERVIEW/EXECUTIVE_SUMMARY.md)
 - [数据结构定义](../../02_ARCHITECTURE/DATA_STRUCTURES.md)
 - [寄存器参考](../../02_ARCHITECTURE/REGISTER_REFERENCE.md)
 - [错误假设记录 - 其他失败的假设](../../06_FAILED_HYPOTHESES/WRONG_ASSUMPTIONS.md)

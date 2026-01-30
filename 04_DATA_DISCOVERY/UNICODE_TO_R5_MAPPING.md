@@ -313,7 +313,7 @@ adj_table = [0x0C, 0x0C, 0x0A, 0x00]
 ## 第七部分：建议的后续方向
 
 1. **动态分析**: 使用 JTAG/调试器在运行时追踪数据流
-2. **IDA Pro**: 使用更专业的嵌入式逆向工具进行符号执行
+2. **相关问题DA Pro**: 使用更专业的嵌入式逆向工具进行符号执行
 3. **数据流追踪**: 从 Unicode 输入点开始追踪，而非从 r5 反向追踪
 4. **扩大样本**: 测试更多 Unicode 字符以建立更完整的映射表
 5. **接受未知**: 承认静态分析的局限性
@@ -337,7 +337,7 @@ adj_table = [0x0C, 0x0C, 0x0A, 0x00]
 - [编码规则](./ENCODING_RULES.md)
 - [调试用字符表](./DEBUG_CHARACTER_TABLE.md)
 - [寄存器参考](../03_CODE_ANALYSIS/REGISTERS/REGISTER_REFERENCE.md)
-- [未解决问题](../01_OVERVIEW/REMAINING_WORK.md)
+- [未解决问题](../01_OVERVIEW/EXECUTIVE_SUMMARY.md)
 
 ---
 

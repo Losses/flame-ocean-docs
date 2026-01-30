@@ -108,7 +108,7 @@ fcn.0013365e (int16_t arg3, int16_t arg4, int16_t arg_3ach);
 
 ## 未解问题
 
-r3 寄存器的详细问题已汇总到 **[REMAINING_WORK.md](../../01_OVERVIEW/REMAINING_WORK.md)** 阶段 4.2。
+r3 寄存器的详细问题已汇总到 **[执行摘要](../01_OVERVIEW/EXECUTIVE_SUMMARY.md)** 阶段 4.2。
 
 **关键问题**:
 - r3 的初始值和含义

@@ -182,5 +182,5 @@
 
 **相关文档**:
 - [字符串表数据发现](../04_DATA_DISCOVERY/LANGUAGE_TABLE.md)
-- [未解决问题](./REMAINING_WORK.md)
+- [执行摘要](../01_OVERVIEW/EXECUTIVE_SUMMARY.md)
 - [方法论经验教训](./METHODOLOGY_LESSONS.md)

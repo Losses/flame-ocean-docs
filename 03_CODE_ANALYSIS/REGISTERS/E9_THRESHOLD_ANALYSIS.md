@@ -85,7 +85,7 @@
 
 ### 可能的解释
 
-1. **ASCII/扩展字符分界点**
+1. **相关问题SCII/扩展字符分界点**
    - 0xE9 = 233 可能是区分 ASCII 和扩展字符的阈值
    - r5 < 0xE9: 可能是 ASCII 字符或基本拉丁字符
    - r5 ≥ 0xE9: 可能是扩展字符、符号或特殊字符
@@ -187,4 +187,4 @@
 - [R5 字符索引](./R5_CHARACTER_INDEX.md)
 - [R6 像素数据指针](./R6_PIXEL_DATA_POINTER.md)
 - [渲染循环分析](./R1_RENDER_CONTEXT_POINTER.md)
-- [未解决问题](../../01_OVERVIEW/REMAINING_WORK.md)
+- [未解决问题](../01_OVERVIEW/EXECUTIVE_SUMMARY.md)

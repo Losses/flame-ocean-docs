@@ -232,7 +232,7 @@ r0 = (r5 >> 4) << 4 = r5 & 0xF0
 
 ## 未解问题
 
-符号表相关的详细问题已汇总到 **[REMAINING_WORK.md](../../01_OVERVIEW/REMAINING_WORK.md)** 阶段 3.2。
+符号表相关的详细问题已汇总到 **[执行摘要](../01_OVERVIEW/EXECUTIVE_SUMMARY.md)** 阶段 3.2。
 
 **关键发现**:
 - ldrsb 加载的值在两条路径中都被立即覆盖

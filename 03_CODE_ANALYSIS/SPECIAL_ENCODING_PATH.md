@@ -209,4 +209,4 @@ metadata_ptr = [base + r0 + 0x14]           ; @ 0x02DC3E
 
 - [独立验证结果](../01_OVERVIEW/SOLUTION_VERIFICATION_2026-01-29.md)
 - [数据流追踪总结](./DATA_FLOW_SUMMARY.md)
-- [未解决问题](../01_OVERVIEW/REMAINING_WORK.md)
+- [未解决问题](../01_OVERVIEW/EXECUTIVE_SUMMARY.md)

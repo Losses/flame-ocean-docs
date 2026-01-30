@@ -197,7 +197,7 @@ r1 = r4 << 16;
 ## 相关文档
 
 - [R6 像素数据指针](../03_CODE_ANALYSIS/REGISTERS/R6_PIXEL_DATA_POINTER.md) - 需要更新
-- [未解决问题](../01_OVERVIEW/REMAINING_WORK.md) - 需要更新
+- [未解决问题](../01_OVERVIEW/EXECUTIVE_SUMMARY.md) - 需要更新
 - [错误假设记录](./WRONG_ASSUMPTIONS.md) - 添加此案例
 
 ---

@@ -443,6 +443,6 @@ char_base = 0x100000 + char_idx * 64  # 每字符 64 字节？
 ### 相关文档
 
 - [UNICODE_TO_R5_MAPPING.md](../04_DATA_DISCOVERY/UNICODE_TO_R5_MAPPING.md) - 详细假设验证记录
-- [REMAINING_WORK.md](../01_OVERVIEW/REMAINING_WORK.md) - 未解决问题汇总
+- [执行摘要](../01_OVERVIEW/EXECUTIVE_SUMMARY.md) - 未解决问题汇总
 
 ---
