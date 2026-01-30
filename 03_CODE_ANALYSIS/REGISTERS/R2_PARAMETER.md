@@ -114,6 +114,73 @@ fcn.0013365e (int16_t arg3, int16_t arg4, int16_t arg_3ach);
 
 ---
 
+## 0x13E024 处的 r2 寄存器追踪分析 (2026-01-29)
+
+### 研究背景
+
+在 Unicode → r5 映射代码搜索过程中，发现 0x13E024 处的 `subs r0, #0x5d` 指令，该指令执行了与观察到的数据模式相匹配的操作（减 0x5D）。完整追踪 r2 寄存器的变化轨迹后，确认此指令与 Unicode 映射无关。
+
+### r2 寄存器完整变化轨迹
+
+```assembly
+0x13DFB6: movs  r2, #0x28        ; r2 = 0x28 (40)
+0x13DFC2: subs  r2, r3, r4      ; r2 = r3 - r4
+0x13DFC4: subs  r2, r3, r0      ; r2 = r3 - r0
+0x13DFC8: asrs  r7, r2, #0x1c   ; r7 = r2 >> 28
+0x13DFCA: asrs  r3, r2, #0x1c   ; r3 = r2 >> 28
+0x13E00C: strb  r2, [r3, #0x1a] ; 存储 r2
+0x13E01C: lsrs  r0, r2, #8      ; r0 = r2 >> 8 ⚠️
+0x13E024: subs  r0, #0x5d       ; r0 = r0 - 0x5D
+```
+
+### 关键发现
+
+**1. r2 的值不是 Unicode 高字节**
+- r2 被初始化为 0x28 (40) - 一个小的常量值
+- r2 经历多次算术操作：r3 - r4, r3 - r0
+- r2 最终值与 Unicode 字符编码无关
+
+**2. `lsrs r0, r2, #8` 不是提取 Unicode 高字节**
+- 指令语义：r0 = r2 >> 8
+- 不是：r0 = unicode >> 8
+- r2 的值来自算术运算，不是从字符加载
+
+**3. 代码上下文不支持 Unicode 处理**
+```assembly
+0x13DFFA: adr  r1, #0x134        ; r1 重定位到局部缓冲区
+0x13DFFE: ldrh r7, [r1, #0x20]   ; 从局部缓冲区加载
+```
+- r1 被 ADR 指令重定位到局部缓冲区
+- `ldrh r7, [r1, #0x20]` 从局部缓冲区加载
+- 不是从原始 Unicode 字符串位置读取
+
+### 结论
+
+**0x13E024 的 SUBS #0x5D 与 Unicode → r5 映射无关**
+
+该指令执行的操作：
+- 输入：r2 >> 8 的结果（来自算术运算）
+- 操作：减去 0x5D (93)
+- 输出：存储到 r0
+
+这是局部代码中的算术运算，不是字符编码转换。
+
+### 证据等级
+
+| 发现 | 证据等级 | 方法 |
+|------|----------|------|
+| r2 初始化为 0x28 | ✅ 已确认 | Capstone 反汇编 |
+| r2 算术运算链 | ✅ 已确认 | 完整寄存器追踪 |
+| r1 ADR 重定位 | ✅ 已确认 | 代码分析 |
+| 非 Unicode 映射 | ✅ 已确认 | 数据流分析 |
+
+### 相关文档
+
+- **[UNICODE_TO_R5_MAPPING.md](../../04_DATA_DISCOVERY/UNICODE_TO_R5_MAPPING.md)** - 假设验证研究详细记录
+- **[WRONG_ASSUMPTIONS.md](../../06_FAILED_HYPOTHESES/WRONG_ASSUMPTIONS.md)** - 假设 9.3 完整分析
+
+---
+
 ## 未解问题
 
 r2 寄存器的详细问题已汇总到 **[REMAINING_WORK.md](../../01_OVERVIEW/REMAINING_WORK.md)** 阶段 4.1。
@@ -131,6 +198,7 @@ r2 寄存器的详细问题已汇总到 **[REMAINING_WORK.md](../../01_OVERVIEW/
 | Bit 7 测试载体 | ✅ 完成 | 已确认 r2 保存 r0 用于测试 |
 | 函数参数角色 | ⚠️ 部分 | 知道是参数，但不知具体值 |
 | subs r2, r7, 7 用途 | ❓ 未知 | 从渲染上下文基址减去 7 的目的不明 |
+| **0x13E024 r2 追踪分析** | ✅ 完成 | **证明 SUBS #0x5D 与 Unicode 映射无关 (2026-01-29)** |
 
 ---
 

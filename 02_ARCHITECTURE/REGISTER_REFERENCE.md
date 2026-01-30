@@ -14,7 +14,7 @@
 | **r2** | 函数参数，用于 bit 7 测试 | [R2 参数](../03_CODE_ANALYSIS/REGISTERS/R2_PARAMETER.md) |
 | **r3** | 行索引或偏移量 | [R3 行索引](../03_CODE_ANALYSIS/REGISTERS/R3_ROW_INDEX.md) |
 | **r4** | 首字节高4位 / 符号表指针 | [R4 符号表](../03_CODE_ANALYSIS/REGISTERS/R4_SYMBOL_TABLE.md) |
-| **r5** | Unicode → 内部索引映射 | [Unicode查找表](../04_DATA_DISCOVERY/UNICODE_LOOKUP_TABLE.md) |
+| **r5** | Unicode → 内部索引映射 | [Unicode查找表](../04_DATA_DISCOVERY/UNICODE_TO_R5_MAPPING.md) |
 | **r6** | 字体数据指针 @ 0x100000 + r5 × 4 | [像素数据位置](../04_DATA_DISCOVERY/PIXEL_DATA_LOCATION.md) |
 | **r7** | 渲染上下文 / 基址指针 | [数据结构定义](./DATA_STRUCTURES.md) |
 
@@ -100,7 +100,7 @@ U+6CA5 (沦) → r5 = 0x0FDC
 U+6CAA (沪) → r5 = 0x0FDA
 ```
 
-**相关文档**: [Unicode查找表](../04_DATA_DISCOVERY/UNICODE_LOOKUP_TABLE.md)
+**相关文档**: [Unicode查找表](../04_DATA_DISCOVERY/UNICODE_TO_R5_MAPPING.md)
 
 ---
 
@@ -208,7 +208,7 @@ struct character_data {
 | r2 | ✅ 完成 | [R2 参数](../03_CODE_ANALYSIS/REGISTERS/R2_PARAMETER.md) |
 | r3 | ✅ 完成 | [R3 行索引](../03_CODE_ANALYSIS/REGISTERS/R3_ROW_INDEX.md) |
 | r4 | ✅ 完成 | [R4 符号表](../03_CODE_ANALYSIS/REGISTERS/R4_SYMBOL_TABLE.md) |
-| r5 | ✅ 完成 | [Unicode查找表](../04_DATA_DISCOVERY/UNICODE_LOOKUP_TABLE.md) |
+| r5 | ✅ 完成 | [Unicode查找表](../04_DATA_DISCOVERY/UNICODE_TO_R5_MAPPING.md) |
 | r6 | ✅ 完成 | [像素数据位置](../04_DATA_DISCOVERY/PIXEL_DATA_LOCATION.md) |
 | r7 | ✅ 完成 | [数据结构定义](./DATA_STRUCTURES.md) |
 

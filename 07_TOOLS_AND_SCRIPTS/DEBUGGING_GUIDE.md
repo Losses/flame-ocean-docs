@@ -103,7 +103,7 @@ def get_encoding_type(firmware, r5):
 
 ### Q: 如何找到字符的 r5 值？
 
-参考 [Unicode查找表](../04_DATA_DISCOVERY/UNICODE_LOOKUP_TABLE.md)。
+参考 [Unicode查找表](../04_DATA_DISCOVERY/UNICODE_TO_R5_MAPPING.md)。
 
 已知映射关系:
 - U+6CA8 (沨) → r5 = 0x0FDE
